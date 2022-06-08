@@ -19,17 +19,24 @@ const HomeController = {
       if(err) { console.log(err); return; }
       console.log('image saved');
       fs.unlinkSync('./uploads/' + req.file.filename);
-      res.redirect('/posts');
+      res.redirect('/images');
     });
   },
 
   FindImage: (req, res) => {
+    console.log('looking for image')
     Images.find((err, images) => {
       images = images.map((image) => {
         image.img.data = image.img.data.toString(`base64`);
+        console.log(image.img.data);
         return image.toObject();
       })
-      res.render(`./views/home/index.hbs`, {images: images});
+      console.log('rendering for image')
+      res.render(`home/index`, {images: images});
+      console.log( {images: images})
+      images.forEach((img) => {
+        console.log(img.img)
+        });
     });
   }
 };
