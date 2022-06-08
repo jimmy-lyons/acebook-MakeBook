@@ -5,8 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const userImgModel = require('./models/userImg.js');
-const fs = require('fs');
+
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -45,27 +44,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// middleware to handle upload files 
-const multer = require('multer');
-const upload = multer({dest: './uploads'});
-
-app.post('/', upload.single('image'), (req, res) => {
-  console.log(req.file.filename);
-  
-  var uploadedImage = new userImgModel({
-    img: {
-      data: fs.readFileSync('./uploads/' + req.file.filename), // read in data from /uploads using fs
-      imgType: req.file.mimetype
-    }
-  });
-  uploadedImage.save(err => {
-    if(err) { console.log(err); return; }
-    console.log('image saved');
-    fs.unlinkSync('./uploads/' + req.file.filename);
-    res.redirect('/');
-  });
- });
 
 
 // middleware function to check for logged-in users
