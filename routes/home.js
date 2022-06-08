@@ -7,6 +7,8 @@ const HomeController = require("../controllers/home");
 
 router.get("/", HomeController.Index);
 
+router.get("/posts", HomeController.FindImage);
+
 router.post("/", upload.single('image'), HomeController.Upload);
 
 module.exports = router;

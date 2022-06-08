@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // create image schema
-const imageSchema = new mongoose.Schema({
+const ImageSchema = new mongoose.Schema({
   img: {
     data: Buffer,
     imgType: String
@@ -9,4 +9,6 @@ const imageSchema = new mongoose.Schema({
 });
 
 // create the Image class and export it
-module.exports = new mongoose.model('UserPic', imageSchema);
+const Images = mongoose.model(`Images`, ImageSchema);
+
+module.exports = Images;
