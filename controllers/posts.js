@@ -12,19 +12,23 @@ const PostsController = {
         throw err;
       }
       
-      // Figure out how to add turnary in and how to render stock image properly...
       Promise.all( posts.map( (post) => {
         return User.findById(post.userID)
         .then((result) => {
-          return {
-            message: post.message,
-            userName: post.userName,
-            photo: {
-              contentType: result.photo.contentType,
-              data: result.photo.data.toString('base64')
+          if (result.photo)
+            {return {
+              message: post.message,
+              userName: post.userName,
+              photo: {
+                contentType: result.photo.contentType,
+                data: result.photo.data.toString('base64')
+              }
             }
-          }
-        })
+          } else {
+            // this is where the stock photo needs to go
+            console.log("error: there is no photo")
+          }}
+        )
       })).then((output) => {
         res.render("posts/index", { posts: output, newUser: false});
       })
