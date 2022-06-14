@@ -29,6 +29,5 @@ describe("Timeline", () => {
 
     cy.get("#comments-list").should("contain", 'Hello back!');
 
-    
   });
 });

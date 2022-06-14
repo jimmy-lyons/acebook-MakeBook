@@ -8,7 +8,15 @@
 </head>
 <body>
   <h1 data-cy="greeting">{{userName}}</h1><br>
+    <div> 
+      Upload a profile photo!
+      <form id="upload-photo" action="/photos/profile-image" method="post" enctype="multipart/form-data">
+        <input class="img-input" type="file" name="photo"><img id="myImg">
+        <input class="photo-upload-button" type="submit" value="Upload">
+      </form>
+    </div>
   <div>
+    Posts:
     <ul class="post" data-cy="user-posts">
       {{#each posts}}
       <li>
