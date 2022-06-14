@@ -33,6 +33,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
+      fs.unlinkSync('./uploads/' + req.file.filename);
       req.session.user = user; // login in user straight away after sign up and redirect to posts page
       req.session.userID = user._id;
       req.session.userName = user.userName;

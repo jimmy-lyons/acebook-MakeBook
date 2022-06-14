@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const User = require("../models/user");
+// const fs = require('fs');
 
 const PostsController = {
   Index: (req, res) => {
@@ -10,26 +11,30 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      Promise.all(posts.map(async (post) => {
-        const user = await User.findOne({ userName: post.userName }).exec();
-        const photo = {
-          contentType: user.photo.contentType,
-          data: user.photo.data.toString('base64'),
-        };
-
-        post.photo = photo;
-
-        return post;
-        
-      })).then((postsWithPhotos) => {
-        res.render("posts/index", { posts: postsWithPhotos, newUser: false });
-      });
-    });
+      
+      // Figure out how to add turnary in and how to render stock image properly...
+      Promise.all( posts.map( (post) => {
+        return User.findById(post.userID)
+        .then((result) => {
+          return {
+            message: post.message,
+            userName: post.userName,
+            photo: {
+              contentType: result.photo.contentType,
+              data: result.photo.data.toString('base64')
+            }
+          }
+        })
+      })).then((output) => {
+        res.render("posts/index", { posts: output, newUser: false});
+      })
+    })
   },
+  
   New: (req, res) => {
     res.render("posts/new", { newUser: false });
   },
+
   Update: (req, res) => {
     Post.findOneAndUpdate(
       {_id: req.body.id},
