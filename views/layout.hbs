@@ -9,6 +9,11 @@
   <header class="header">
     <h1 class="logo"><a>Makebook</a></h1>
 
+    <form action="/friends/search" method="post">
+      <input type="text" name="userName" class="search-bar" placeholder="Find an Acquaintance">
+      <input type="submit" class="submit-button" value="Search">
+    </form>
+
     <ul class="main-nav">
 
       {{#if newUser}}
