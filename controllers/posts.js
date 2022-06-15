@@ -24,6 +24,7 @@ const PostsController = {
           if (result.photo.data)
             {return {
               message: post.message,
+              id: post._id,
               userName: post.userName,
               photo: {
                 contentType: result.photo.contentType,
@@ -33,6 +34,7 @@ const PostsController = {
           } else {
             return {
               message: post.message,
+              id: post._id,
               userName: post.userName,
               photo: {
                 contentType: "image/png",
