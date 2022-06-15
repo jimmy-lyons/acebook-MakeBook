@@ -12,7 +12,7 @@
     {{#each posts}}
     <li class="frm-textbox-yellow">
       <div class="name-and-image">
-        <img class="picture-tag" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+        <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
         <div class="name-tag">{{this.userName}}</div>
       </div>
       {{this.message}}
@@ -34,6 +34,7 @@
         </div>
         <input type="hidden" name="id" value="{{this.id}}">
         
+      </form>
         <ul id="comments-list">
           {{#each this.comments}}
               <div class="comment-and-image">
@@ -42,7 +43,6 @@
               </div>
           {{/each}}
         </ul>
-      </form>
     </li>
     {{/each}}
   </ul>
