@@ -17,7 +17,7 @@
          ((((#     #((#/                                          
 ```
 
-This project is a clone of FaceBook.
+This project is a clone of Facebook.
 It uses:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
