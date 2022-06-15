@@ -9,8 +9,8 @@
 <body>
   <h1 data-cy="greeting">{{userName}}</h1><br>
     <div> 
-      Upload a profile photo!
-      <form id="upload-photo" action="/photos/profile-image" method="post" enctype="multipart/form-data">
+      Upload a photo!
+      <form id="upload-photo" action="/photos/new-image" method="post" enctype="multipart/form-data">
         <input class="img-input" type="file" name="photo"><img id="myImg">
         <input class="photo-upload-button" type="submit" value="Upload">
       </form>
