@@ -1,6 +1,12 @@
 const Post = require("../models/post");
 const User = require("../models/user");
-// const fs = require('fs');
+const fs = require('fs');
+const stockImageData = fs.readFileSync('./public/Higher_res_mongoose.png', function(err, data) {
+  if (err) {
+    console.log(err)
+  }
+  return data.toString('base64')
+})
 
 const PostsController = {
   Index: (req, res) => {
@@ -15,7 +21,7 @@ const PostsController = {
       Promise.all( posts.map( (post) => {
         return User.findById(post.userID)
         .then((result) => {
-          if (result.photo)
+          if (result.photo.data)
             {return {
               message: post.message,
               userName: post.userName,
@@ -25,8 +31,14 @@ const PostsController = {
               }
             }
           } else {
-            // this is where the stock photo needs to go
-            console.log("error: there is no photo")
+            return {
+              message: post.message,
+              userName: post.userName,
+              photo: {
+                contentType: "image/png",
+                data: stockImageData.toString('base64')
+              }
+            }
           }}
         )
       })).then((output) => {
