@@ -1,8 +1,15 @@
 # Acebook
 
-This is a Node.js template for the Acebook engineering project.
+## Contributors
 
-It uses:
+* [Anish Kakaiya](https://github.com/AKCDNG)
+* [Jimmy Lyons](https://github.com/jimmy-lyons)
+* [Slava Yates](https://github.com/amfibiya17)
+* [Tim Graham](https://github.com/timbo-graham)
+* [Keiran Carty](https://github.com/K-Carty)
+* [George Dainton](https://github.com/GeorgeDainton)
+
+## Technologies Used
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
